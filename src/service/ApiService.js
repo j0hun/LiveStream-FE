@@ -7,8 +7,8 @@ export default class ApiService {
     static getHeader() {
         const token = localStorage.getItem("token");
         return {
-            Authorization : `Bearer ${token}`,
-            "Content-Type" : "application/json"
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
         };
     }
 
@@ -37,18 +37,26 @@ export default class ApiService {
         return role === 'ADMIN'
     }
 
-    static async addRoom(){
-        const response = await axios.post(`${this.BASE_URL}/room`);
+    static async addRoom() {
+        const response = await axios.post(`${this.BASE_URL}/room`, {}, {
+            headers: this.getHeader()
+        });
         return response.data;
     }
 
-    static async getAllRooms(){
+    static async getAllRooms() {
         const response = await axios.get(`${this.BASE_URL}/room`);
         return response.data;
     }
 
-    static async getRoomById(roomId){
+    static async getRoomById(roomId) {
         const response = await axios.get(`${this.BASE_URL}/room/${roomId}`);
+        return response.data;
+    }
+
+    static async checkBroadcaster(roomId) {
+        const headers = this.isAuthenticated() ? { headers: this.getHeader() } : {};
+        const response = await axios.get(`${this.BASE_URL}/room/${roomId}/checkBroadcaster`, headers);
         return response.data;
     }
 

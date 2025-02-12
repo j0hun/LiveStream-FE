@@ -10,30 +10,21 @@ const RoomPage = () => {
         try {
             const response = await ApiService.getAllRooms();
             console.log(response);
-            setRoom(response);
+            setRoom(response.data);
         } catch (error) {
             console.log(error);
         }
     }
 
     useEffect(() => {
-        fetchRoom();
-        const ws = new WebSocket("ws://localhost:8080/ws");
-
-        ws.onopen = () => {
-            ws.send(JSON.stringify({ type: "join", role: "viewer" }));
-        };
-
-        return () => {
-            ws.close();
-        };
+        fetchRoom();        
     }, []);
 
     const startBroadcasting = async () => {
         try {
             const response = await ApiService.addRoom();
-            console.log(response);
-            const id = response;
+            console.log(response.data);
+            const id = response.data;
             navigate(`/room/${id}`)
         } catch (error) {
             console.log(error);
@@ -53,8 +44,8 @@ const RoomPage = () => {
                 ) : (
                     <ul>
                         {room.map((item) => (
-                            <li key={room.id}>
-                                <button onClick={() => joinStream(room.id)}>방송보기</button>
+                            <li key={item.id}>
+                                <button onClick={() => joinStream(item.id)}>방송보기</button>
                             </li>
                         ))}
                     </ul>
