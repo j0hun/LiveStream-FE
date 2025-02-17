@@ -6,10 +6,12 @@ export default class ApiService {
 
     static getHeader() {
         const token = localStorage.getItem("token");
-        return {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json"
-        };
+        if (token != null) {
+            return {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            };
+        }
     }
 
     static async registerUser(formData) {
@@ -57,6 +59,31 @@ export default class ApiService {
     static async checkBroadcaster(roomId) {
         const headers = this.isAuthenticated() ? { headers: this.getHeader() } : {};
         const response = await axios.get(`${this.BASE_URL}/room/${roomId}/checkBroadcaster`, headers);
+        return response.data;
+    }
+
+    static async createRoom(sessionId, handleId, roomId) {
+        const response = await axios.post(`${this.BASE_URL}/janus/create-room`, null, {
+            params: { sessionId, handleId, roomId },
+            headers: this.getHeader()
+        });
+        return response.data;
+    }
+
+    static async joinRoom(sessionId, handleId, roomId, display, ptype, feed) {
+        const params = { sessionId, handleId, roomId, display, ptype, feed };
+        const response = await axios.post(`${this.BASE_URL}/janus/join-room`, null, {
+            params,
+        });
+        
+        return response.data;
+    }
+
+    static async getPublishers(sessionId, handleId, roomId) {
+        const params = { sessionId, handleId, roomId };
+        const response = await axios.post(`${this.BASE_URL}/janus/get-publishers`, null, {
+            params,
+        });
         return response.data;
     }
 

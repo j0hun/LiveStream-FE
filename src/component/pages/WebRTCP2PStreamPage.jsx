@@ -7,7 +7,7 @@ const ICE_SERVERS = {
   iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
 };
 
-const StreamPage = () => {
+const WebRTCP2PStreamPage = () => {
   // URL 파라미터에서 roomId를 가져옴
   const { roomId } = useParams();
 
@@ -278,4 +278,4 @@ const StreamPage = () => {
   );
 };
 
-export default StreamPage;
+export default WebRTCP2PStreamPage;
