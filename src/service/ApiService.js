@@ -87,4 +87,14 @@ export default class ApiService {
         return response.data;
     }
 
+    static async startStream() {
+        const response = await axios.post(`${this.BASE_URL}/stream/start`, null, null);
+        return response.data;
+    }
+
+    static async getHlsUrl(streamId) {
+        const response = await axios.get(`${this.BASE_URL}/stream/hls/${streamId}`);
+        return response.data;
+    }
+
 }

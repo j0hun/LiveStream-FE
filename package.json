@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@antmedia/webrtc_adaptor": "^2.13.2",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
+    "hls": "^0.0.1",
+    "hls-server": "^1.5.0",
+    "hls.js": "^1.5.20",
     "janus-gateway": "^1.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
