@@ -88,11 +88,16 @@ export default class ApiService {
     }
 
     static async startStream() {
-        const response = await axios.post(`${this.BASE_URL}/stream/start`, null, null);
+        const response = await axios.post(`${this.BASE_URL}/ams-stream/start`, null, null);
         return response.data;
     }
 
-    static async getHlsUrl(streamId) {
+    static async geHlsUrl(streamId) {
+        const response = await axios.get(`${this.BASE_URL}/ams-stream/hls/${streamId}`);
+        return response.data;
+    }
+
+    static async getRTMPHlsUrl(streamId) {
         const response = await axios.get(`${this.BASE_URL}/stream/hls/${streamId}`);
         return response.data;
     }

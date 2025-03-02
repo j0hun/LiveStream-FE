@@ -6,6 +6,7 @@ import WebRTCBroadcaster from './component/pages/WebRTCBroadcaster';
 import RegisterPage from './component/pages/RegisterPage';
 import LoginPage from './component/pages/LoginPage';
 import WebRTCHlsViewPage from './component/pages/WebRTCHlsViewPage';
+import RTMPHlsViewPage from './component/pages/RTMPHlsViewPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/room' element={<RoomPage />} />
         <Route path='/room/:roomId' element={<WebRTCBroadcaster />} />
         <Route path='/view/:streamId' element={<WebRTCHlsViewPage />} />
+        <Route path='/stream/:streamId' element={<RTMPHlsViewPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/login' element={<LoginPage />} />
       </Routes>
