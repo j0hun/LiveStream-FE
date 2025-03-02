@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ApiService from "../../service/ApiService";
 
-const RoomPage = () => {
+const WebRTCP2PRoomPage = () => {
     const [room, setRoom] = useState([]);
     const navigate = useNavigate();
 
@@ -25,20 +25,20 @@ const RoomPage = () => {
             const response = await ApiService.addRoom();
             console.log(response.data);
             const id = response.data;
-            navigate(`/room/${id}`)
+            navigate(`/webrtc-p2p/${id}`)
         } catch (error) {
             console.log(error);
         }
     };
 
     const joinStream = (id) => {
-        navigate(`/room/${id}`);
+        navigate(`/webrtc-p2p/${id}`);
     };
 
     return (
         <div className="room">
             <div>
-                <h3>Live Stream</h3>
+                <h3>WebRTC P2P 스트리밍</h3>
                 {room.length === 0 ? (
                     <p>방송 중인 사람이 없습니다.</p>
                 ) : (
@@ -56,4 +56,4 @@ const RoomPage = () => {
     );
 };
 
-export default RoomPage;
+export default WebRTCP2PRoomPage;
