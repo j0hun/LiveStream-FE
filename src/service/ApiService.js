@@ -63,7 +63,7 @@ export default class ApiService {
     }
 
     static async createRoom(sessionId, handleId, roomId) {
-        const response = await axios.post(`${this.BASE_URL}/janus/create-room`, null, {
+        const response = await axios.post(`${this.BASE_URL}/janus-stream/create-room`, null, {
             params: { sessionId, handleId, roomId },
             headers: this.getHeader()
         });
@@ -72,7 +72,7 @@ export default class ApiService {
 
     static async joinRoom(sessionId, handleId, roomId, display, ptype, feed) {
         const params = { sessionId, handleId, roomId, display, ptype, feed };
-        const response = await axios.post(`${this.BASE_URL}/janus/join-room`, null, {
+        const response = await axios.post(`${this.BASE_URL}/janus-stream/join-room`, null, {
             params,
         });
         
@@ -81,7 +81,7 @@ export default class ApiService {
 
     static async getPublishers(sessionId, handleId, roomId) {
         const params = { sessionId, handleId, roomId };
-        const response = await axios.post(`${this.BASE_URL}/janus/get-publishers`, null, {
+        const response = await axios.post(`${this.BASE_URL}/janus-stream/get-publishers`, null, {
             params,
         });
         return response.data;
