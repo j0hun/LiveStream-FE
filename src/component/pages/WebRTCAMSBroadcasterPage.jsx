@@ -4,7 +4,7 @@ import ApiService from "../../service/ApiService";
 
 const WEBSOCKET_URL = "ws://localhost:5080/LiveApp/websocket";
 
-const WebRTCPublisher = () => {
+const WebRTCAMSBroadcasterPage = () => {
   const videoRef = useRef(null);
   const [isPublishing, setIsPublishing] = useState(false);
   const [streamId, setStreamId] = useState(null);
@@ -14,7 +14,7 @@ const WebRTCPublisher = () => {
     const initStream = async () => {
       try {
         // 방송 생성 API 호출
-        const response = await ApiService.startStream();        
+        const response = await ApiService.amsStartStream();        
         setStreamId(response.streamId);
         setHlsUrl(response.hlsUrl);
 
@@ -83,4 +83,4 @@ const WebRTCPublisher = () => {
   );
 };
 
-export default WebRTCPublisher;
+export default WebRTCAMSBroadcasterPage;

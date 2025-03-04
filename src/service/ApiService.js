@@ -87,12 +87,12 @@ export default class ApiService {
         return response.data;
     }
 
-    static async startStream() {
+    static async amsStartStream() {
         const response = await axios.post(`${this.BASE_URL}/ams-stream/start`, null, null);
         return response.data;
     }
 
-    static async geHlsUrl(streamId) {
+    static async getAMSHlsUrl(streamId) {
         const response = await axios.get(`${this.BASE_URL}/ams-stream/hls/${streamId}`);
         return response.data;
     }

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import HlsPlayer from './HlsPlayer.jsx';
-import ApiService from "../../service/ApiService";
+import ApiService from "../../service/ApiService.js";
 
-const WebRTCHlsViewPage = () => {
+const WebRTCAMSStreamPage = () => {
   const { streamId } = useParams();
   const [hlsUrl, setHlsUrl] = useState("");
 
   useEffect(() => {
     const fetchHlsUrl = async () => {
       try {
-        const response = await ApiService.getHlsUrl(streamId);
+        const response = await ApiService.getAMSHlsUrl(streamId);
         console.log(response);
         setHlsUrl(response);
       } catch (error) {
@@ -29,4 +29,4 @@ const WebRTCHlsViewPage = () => {
   );
 };
 
-export default WebRTCHlsViewPage;
+export default WebRTCAMSStreamPage;
