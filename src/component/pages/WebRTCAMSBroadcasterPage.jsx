@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { WebRTCAdaptor } from "@antmedia/webrtc_adaptor";
 import ApiService from "../../service/ApiService";
 
-const WEBSOCKET_URL = "ws://localhost:5080/LiveApp/websocket";
+const WEBSOCKET_URL = process.env.REACT_APP_LIVEAPP_WEBSOCKET_URL;
 
 const WebRTCAMSBroadcasterPage = () => {
   const videoRef = useRef(null);

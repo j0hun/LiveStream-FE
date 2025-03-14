@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class ApiService {
 
-    static BASE_URL = "http://localhost:8080/api";
+    static BASE_URL = process.env.REACT_APP_BASE_URL;
 
     static getHeader() {
         const token = localStorage.getItem("token");
@@ -74,16 +74,16 @@ export default class ApiService {
         const params = { sessionId, handleId, roomId, display, ptype, feed };
         const response = await axios.post(`${this.BASE_URL}/janus-stream/join-room`, null, {
             params,
-        });
-        
+        });    
         return response.data;
     }
 
     static async getPublishers(sessionId, handleId, roomId) {
         const params = { sessionId, handleId, roomId };
+
         const response = await axios.post(`${this.BASE_URL}/janus-stream/get-publishers`, null, {
             params,
-        });
+        });        
         return response.data;
     }
 

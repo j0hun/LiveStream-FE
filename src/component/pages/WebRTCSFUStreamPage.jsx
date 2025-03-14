@@ -4,7 +4,7 @@ import ApiService from "../../service/ApiService";
 import adapter from "webrtc-adapter";
 import Janus from "janus-gateway";
 
-const JANUS_SERVER = "http://localhost:8088/janus";
+const JANUS_SERVER = process.env.REACT_APP_JANUS_SERVER;
 window.adapter = adapter;
 
 const WebRTCSFUStreamPage = () => {
@@ -30,7 +30,7 @@ const WebRTCSFUStreamPage = () => {
   const checkBroadcaster = async () => {
     try {
       const response = await ApiService.checkBroadcaster(roomId);
-      console.log("방송자 여부 확인:", response.data);
+      console.log("방송자 여부 확인:", response.data);      
       setIsBroadcaster(response.data);
     } catch (error) {
       console.error("checkBroadcaster error:", error);
@@ -93,7 +93,7 @@ const WebRTCSFUStreamPage = () => {
 
   useEffect(() => {
     if (isBroadcaster === null) return; // 아직 방송자 여부 결정 안됨
-
+  
     Janus.init({
       debug: "all",
       callback: () => {
@@ -106,7 +106,7 @@ const WebRTCSFUStreamPage = () => {
               console.error("Janus 세션 ID가 유효하지 않음!");
               return;
             }
-
+  
             if (isBroadcaster) {
               // 방송자(Publisher) 처리
               const localStream = await getLocalStream();
@@ -116,12 +116,12 @@ const WebRTCSFUStreamPage = () => {
                   publisherHandleRef.current = pluginHandle;
                   console.log("Janus Videoroom 플러그인 (publisher) attach 성공");
                   const handleId = pluginHandle.getId();
-
+  
                   if (!isRoomCreatedRef.current) {
                     isRoomCreatedRef.current = true;
                     await createRoomOnBackend(sessionId, handleId);
                   }
-
+  
                   // 방송자 join 요청
                   const register = {
                     request: "join",

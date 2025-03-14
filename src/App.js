@@ -11,6 +11,9 @@ import RTMPHlsViewPage from './component/pages/RTMPHlsViewPage';
 import WebRTCP2PStreamPage from './component/pages/WebRTCP2PStreamPage';
 import WebRTCSFUStreamPage from './component/pages/WebRTCSFUStreamPage';
 
+import BroadcasterPage from "./component/pages/BroadcasterPage";
+import ViewerPage from "./component/pages/ViewerPage";
+
 function App() {
   return (
     <BrowserRouter>
@@ -29,6 +32,10 @@ function App() {
 
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/login' element={<LoginPage />} />
+
+        <Route path="/broadcast/:roomId" element={<BroadcasterPage />} />
+        <Route path="/view/:roomId" element={<ViewerPage />} />
+
       </Routes>
     </BrowserRouter>
   );

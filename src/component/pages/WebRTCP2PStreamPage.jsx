@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import ApiService from "../../service/ApiService";
 
+const WEBSOCKET_URL = process.env.REACT_APP_WEBSOCKET_URL;
+
 // ICE 서버 설정 (STUN 서버 사용)
 const ICE_SERVERS = {
   iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
@@ -208,7 +210,7 @@ const WebRTCP2PStreamPage = () => {
     if (isBroadcaster === null) return; // 아직 방송자 여부를 결정하지 않은 경우
 
     // WebSocket 연결 생성
-    const ws = new WebSocket("ws://localhost:8080/ws");
+    const ws = new WebSocket(WEBSOCKET_URL);
     socketRef.current = ws;
 
     // 연결이 열리면, join 메시지를 보내고 방송자라면 로컬 스트림 획득

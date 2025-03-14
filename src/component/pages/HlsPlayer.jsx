@@ -25,7 +25,7 @@ const HlsPlayer = ({ hlsUrl }) => {
     }, [hlsUrl]);
 
     return (
-        <video ref={videoRef} controls muted style={{ width: '400px' }} />
+        <video ref={videoRef} controls muted style={{ width: '100px' }} />
     );
 };
 
